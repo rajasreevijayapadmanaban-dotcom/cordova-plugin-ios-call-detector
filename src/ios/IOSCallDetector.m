@@ -1,24 +1,18 @@
-#import <Cordova/CDV.h>
-#import <CallKit/CallKit.h>
-
-@interface IOSCallDetector : CDVPlugin <CXCallObserverDelegate>
-
-@property (nonatomic, strong) CXCallObserver *callObserver;
-@property (nonatomic, strong) NSString *callbackId;
-
-- (void)startListening:(CDVInvokedUrlCommand*)command;
-
-@end
-
+#import "IOSCallDetector.h"
 
 @implementation IOSCallDetector
+
+- (void)pluginInitialize {
+
+    self.callObserver = [[CXCallObserver alloc] init];
+
+}
 
 - (void)startListening:(CDVInvokedUrlCommand*)command {
 
     self.callbackId = command.callbackId;
 
-    self.callObserver = [[CXCallObserver alloc] init];
-    self.callObserver.delegate = self;
+    [self.callObserver setDelegate:self queue:nil];
 
     CDVPluginResult *result =
         [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -29,21 +23,27 @@
                                 callbackId:command.callbackId];
 }
 
-
-// iOS CallKit callback
 - (void)callObserver:(CXCallObserver *)callObserver
-     callChanged:(CXCall *)call {
+         callChanged:(CXCall *)call {
+
+    if (!self.callbackId) {
+        return;
+    }
 
     NSString *state = @"IDLE";
 
     if (call.hasEnded) {
+
         state = @"IDLE";
-    }
-    else if (call.isOutgoing) {
+
+    } else if (call.isOutgoing) {
+
         state = @"OFFHOOK";
-    }
-    else if (!call.hasConnected) {
+
+    } else if (!call.hasConnected) {
+
         state = @"RINGING";
+
     }
 
     CDVPluginResult *pluginResult =
