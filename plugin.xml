@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin
+    id="cordova-plugin-ios-call-detector"
+    version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+
+    <name>IOSCallDetector</name>
+
+    <js-module
+        src="www/IOSCallDetector.js"
+        name="IOSCallDetector">
+
+        <clobbers target="cordova.plugins.IOSCallDetector"/>
+
+    </js-module>
+
+    <platform name="ios">
+
+        <source-file
+            src="src/ios/IOSCallDetector.swift" />
+
+        <config-file
+            target="config.xml"
+            parent="/*">
+
+            <feature name="IOSCallDetector">
+
+                <param
+                    name="ios-package"
+                    value="IOSCallDetector" />
+
+            </feature>
+
+        </config-file>
+
+    </platform>
+
+</plugin>
