@@ -1,0 +1,11 @@
+{
+  "name": "cordova-plugin-ios-call-detector",
+  "version": "1.0.0",
+  "description": "iOS Call Detection Plugin",
+  "cordova": {
+    "id": "cordova-plugin-ios-call-detector",
+    "platforms": [
+      "ios"
+    ]
+  }
+}
