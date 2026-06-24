@@ -7,5 +7,10 @@
     "platforms": [
       "ios"
     ]
-  }
+  },
+  "keywords": [
+    "cordova",
+    "ios",
+    "callkit"
+  ]
 }
