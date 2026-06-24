@@ -17,8 +17,11 @@
 
     <platform name="ios">
 
-        <source-file
-            src="src/ios/IOSCallDetector.swift" />
+        <!-- CallKit Framework -->
+        <framework src="CallKit.framework" />
+
+        <!-- Objective-C file -->
+        <source-file src="src/ios/IOSCallDetector.m" />
 
         <config-file
             target="config.xml"
