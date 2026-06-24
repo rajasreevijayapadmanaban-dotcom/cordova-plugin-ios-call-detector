@@ -17,10 +17,10 @@
 
     <platform name="ios">
 
-        <!-- CallKit Framework -->
         <framework src="CallKit.framework" />
 
-        <!-- Objective-C file -->
+        <header-file src="src/ios/IOSCallDetector.h" />
+
         <source-file src="src/ios/IOSCallDetector.m" />
 
         <config-file
@@ -28,11 +28,9 @@
             parent="/*">
 
             <feature name="IOSCallDetector">
-
                 <param
                     name="ios-package"
                     value="IOSCallDetector" />
-
             </feature>
 
         </config-file>
